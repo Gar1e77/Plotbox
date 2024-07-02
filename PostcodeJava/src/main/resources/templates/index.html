@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Postcode Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        input { margin: 10px 0; padding: 5px; }
+        button { padding: 5px 10px; }
+        #container { display: flex; flex-direction: row; justify-content: space-between; margin-top: 20px; }
+        #result { flex: 1; margin-right: 20px; }
+        .result-item { margin-bottom: 10px; }
+        .nested { margin-left: 20px; }
+        #map { flex: 1; height: 400px; width: 100%; display: none; }
+    </style>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <h1>UK Postcode Search</h1>
+    <form action="/search" method="post">
+        <input type="text" id="postcode" name="postcode" placeholder="Enter postcode" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="container">
+        <div id="result">
+            <div th:if="${result}">
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    document.addEventListener("DOMContentLoaded", function() {
+                        function generateHtml(obj, indentLevel = 0) {
+                            let html = '';
+                            for (const [key, value] of Object.entries(obj)) {
+                                const indentClass = indentLevel > 0 ? 'nested' : '';
+                                if (typeof value === 'object' && value !== null) {
+                                    html += `<div class="${indentClass}"><strong>${key.replace(/_/g, ' ')}:</strong></div>`;
+                                    html += generateHtml(value, indentLevel + 1);
+                                } else {
+                                    html += `<div class="result-item ${indentClass}"><strong>${key.replace(/_/g, ' ')}:</strong> ${value || 'N/A'}</div>`;
+                                }
+                            }
+                            return html;
+                        }
+
+                        var response = /*[[${result}]]*/ 'null';
+                        if (response !== 'null') {
+                            var data = JSON.parse(response);
+                            if (data.status === 200) {
+                                document.getElementById('map').style.display = 'block';
+                                var resultDiv = document.getElementById('result');
+                                resultDiv.innerHTML = generateHtml(data.result);
+                                
+                                const map = L.map('map').setView([data.result.latitude, data.result.longitude], 13);
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                }).addTo(map);
+                                L.marker([data.result.latitude, data.result.longitude]).addTo(map)
+                                    .bindPopup("<b>Postcode:</b> " + data.result.postcode + "<br><b>Country:</b> " + data.result.country).openPopup();
+                            }
+                        }
+                    });
+                    /*]]>*/
+                </script>
+            </div>
+            <div th:if="${error}" class="result-item" style="color: red;">
+                <strong th:text="${error}"></strong>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</body>
+</html>
