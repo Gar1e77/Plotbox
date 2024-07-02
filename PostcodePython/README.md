@@ -11,7 +11,7 @@ This is a simple web application to search for UK postcodes and retrieve geograp
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/postcode-search-app.git
+    git clone https://github.com/Gar1e77/Plotbox.git
     cd postcode-search-app
     ```
 
