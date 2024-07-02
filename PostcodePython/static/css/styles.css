@@ -1,0 +1,8 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+input { margin: 10px 0; padding: 5px; }
+button { padding: 5px 10px; }
+#container { display: flex; flex-direction: row; justify-content: space-between; margin-top: 20px; }
+#result { flex: 1; margin-right: 20px; }
+.result-item { margin-bottom: 10px; }
+.nested { margin-left: 20px; }
+#map { flex: 1; height: 400px; width: 100%; display: none; }
