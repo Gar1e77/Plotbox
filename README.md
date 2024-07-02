@@ -24,7 +24,7 @@ This in turn is a step towards ensuring code is horizontally scalable.
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/postcode-search-app.git
+    git clone https://github.com/Gar1e77/Plotbox.git
     cd < the desired variant>
     ```
 
