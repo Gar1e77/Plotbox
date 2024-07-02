@@ -27,9 +27,11 @@ This is a simple web application to search for UK postcodes and retrieve geograp
 
 ## Project Structure
 
-postcode-search-app/
+postcodePhp/
+├── css/
+│   └── styles.css
+├── js/
+│   └── app.js
 ├── index.php
 ├── search.php
-├── Dockerfile
-├── docker-compose.yml
 ├── README.md

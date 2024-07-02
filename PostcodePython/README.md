@@ -28,10 +28,14 @@ This is a simple web application to search for UK postcodes and retrieve geograp
 ## Project Structure
 
 postcodepython/
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── app.js
+├── templates/
+│   └── index.html
 ├── app.py
 ├── requirements.txt
 ├── Dockerfile
-├── docker-compose.yml
 ├── README.md
-└── templates/
-└── index.html

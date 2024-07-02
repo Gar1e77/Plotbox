@@ -47,6 +47,10 @@ PlotboxJava/
 │   │   │               │   └── PostcodeService.java
 │   │   ├── resources/
 │   │   │   ├── static/
+│   │   │   │   ├── css/
+│   │   │   │   │   └── styles.css
+│   │   │   │   ├── js/
+│   │   │   │   │   └── app.js
 │   │   │   ├── templates/
 │   │   │   │   └── index.html
 │   │   │   └── application.properties
