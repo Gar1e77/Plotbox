@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const postcodePattern = /^([GIR 0AA]|(A[BL]|B[ABDHLNRST]?|C[ABFHMORTVW]?|D[ADEGHLNTY]?|E[HNX]?|F[KY]?|G[LUY]?|H[ADGPRSUX]?|I[GMPV]?|JE|K[ATWY]|L[ADELNSU]?|M[EKL]?|N[EGNPRW]?|O[LX]?|P[AEHLOR]?|R[GHM]?|S[AEGKLMNORSTY]?|T[ADFNQRSW]?|UB|W[ADFNRSV]?|YO|ZE)[0-9][0-9A-Z]?[0-9][ABD-HJLNP-UW-Z]{2})$/i;
+
     function generateHtml(obj, indentLevel = 0) {
         let html = '';
         for (const [key, value] of Object.entries(obj)) {
@@ -37,4 +39,14 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Error parsing JSON response:", error);  // Debugging statement
         }
     }
+
+    // Add event listener for form submission
+    document.getElementById('postcodeForm').addEventListener('submit', function(event) {
+        const postcode = document.getElementById('postcode').value;
+
+        if (!postcodePattern.test(postcode)) {
+            alert('Please enter a valid UK postcode.');
+            event.preventDefault();
+        }
+    });
 });

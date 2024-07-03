@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>UK Postcode Search</h1>
-    <form action="search.php" method="post">
+    <form id="postcodeForm" action="search.php" method="post">
         <input type="text" id="postcode" name="postcode" placeholder="Enter postcode" required>
         <button type="submit">Search</button>
     </form>
