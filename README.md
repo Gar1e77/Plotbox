@@ -8,6 +8,8 @@ They are presented as a:
 
 Each variant is presented to demonstrate adaptability to handling the project task in a variety of technologies.
 
+Please note that Php variant also displays some basic postcode regex validation. 
+
 For simplicity sake, each variant is presented with a docker configuration to aid in running each variant in a multi-environment situation. 
 In doing so it demonstrates how the developer can share the environmental conditions with others necessary to run these apps.  
 
